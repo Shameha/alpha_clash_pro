@@ -1,6 +1,11 @@
 function handleKeyButton(event){
     const playerPresed = event.key;
+
     console.log('player pressed',playerPresed);
+    //stp the game 
+    if(playerPresed === 'Escaped'){
+      gameOver();
+    }
 
     //get the expected press
     const currentAphabateElement = document.getElementById('curretnt-Alphabate');
@@ -97,9 +102,21 @@ playgroundSection.classList.remove('hidden')*/
 hideElement('home-screen');
 hideElement('final-result')
 showElement('play-ground');
+//reset score and life
+setElementValueById('current-life',5);
+setElementValueById('current-score',0);
 continueGame();
 }
 function gameOver(){
 hideElement('play-ground');
-showElement('final-result')
+showElement('final-result');
+//update final score
+const lastScore = getElementValueById('current-score');
+console.log(lastScore);
+setElementValueById('last-score',lastScore);
+
+//claer the last element
+const currentAlphabate =  getElementTextById('curretnt-Alphabate');
+//console.log(currentAlphabate);
+removeBackgrounColor(currentAlphabate);
 }
